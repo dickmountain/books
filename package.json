@@ -1,0 +1,23 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dickmountain/node.git"
+  },
+  "author": "Max Atroshenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dickmountain/node/issues"
+  },
+  "homepage": "https://github.com/dickmountain/node#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.15.4"
+  }
+}
