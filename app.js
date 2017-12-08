@@ -1,17 +1,12 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    app = express();
+    app = express(),
+    Book = require('./models/book.');
 
 mongoose.connect('mongodb://localhost/books', {
   useMongoClient: true
 });
-var bookSchema = new mongoose.Schema({
-    author:String,
-    image:String,
-    description:String
-});
-var Book = mongoose.model('Book', bookSchema);
 
 app.use(bodyParser.urlencoded({
     extended:true
