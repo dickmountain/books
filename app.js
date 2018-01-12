@@ -15,7 +15,7 @@ var booksRoutes = require('./routes/books'),
     commentRoutes = require('./routes/comments'),
     indexRoutes = require('./routes/index');
 
-seedDb();
+// seedDb();
 mongoose.connect('mongodb://localhost/books', {
   useMongoClient: true
 });

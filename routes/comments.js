@@ -16,6 +16,10 @@ router.post('/', isLoggedIn, function(request, response){
         }else{
             Comment.create(request.body.comment, function(err, comment){
                 if(!err){
+                    comment.author.id = request.user._id;
+                    comment.author.username = request.user.username;
+                    comment.save();
+                
                     book.comments.push(comment);
                     book.save();
                     response.redirect('/books/'+book._id); 

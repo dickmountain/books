@@ -27,28 +27,28 @@ function seedDb(){
         if(err){
             console.log(err);
         }else{
-            data.forEach(function(seed){
-               Book.create(seed, function(err, book){
-                   if(err){
-                      console.log(err); 
-                   }else{
-                       Comment.create(
-                           {
-                               text:'Super!',
-                               author:'Igor'
-                           },
-                           function(error, comment){
-                               if(err){
-                                  console.log(err);
-                               }else{
-                                   book.comments.push(comment);
-                                   book.save();
-                               }
-                            }
-                       );
-                   }
-               }); 
-            });
+            // data.forEach(function(seed){
+            //   Book.create(seed, function(err, book){
+            //       if(err){
+            //           console.log(err); 
+            //       }else{
+            //           Comment.create(
+            //               {
+            //                   text:'Super!',
+            //                   author:'Igor'
+            //               },
+            //               function(error, comment){
+            //                   if(err){
+            //                       console.log(err);
+            //                   }else{
+            //                       book.comments.push(comment);
+            //                       book.save();
+            //                   }
+            //                 }
+            //           );
+            //       }
+            //   }); 
+            // });
         }
     });
 }
