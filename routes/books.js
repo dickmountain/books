@@ -10,17 +10,21 @@ router.get('/', function(request, response){
     });
 });
 
-router.post('/', function(request, response){
+router.post('/', isLoggedIn, function(request, response){
     var author = request.body.author;
     var image = request.body.image;
     var description = request.body.description;
     var title = request.body.title;
-   
+    var creator = {
+        id: request.user._id,
+        username: request.user.username
+    };
     Book.create({
-        author:author,
-        image:image,
-        description:description,
-        title:title
+        author: author,
+        image: image,
+        description: description,
+        title: title,
+        creator: creator
     }, function(err, book){
         if(!err){
             response.redirect('/books');
@@ -28,7 +32,7 @@ router.post('/', function(request, response){
     });
 });
 
-router.get('/new', function(request, response){
+router.get('/new', isLoggedIn, function(request, response){
     response.render('books/new');
 });
 
@@ -39,5 +43,12 @@ router.get('/:id', function(request, response){
         }
     });
 });
+
+function isLoggedIn(request, response, next){
+    if(request.isAuthenticated()){
+        return next();
+    }
+    response.redirect('/login');
+} 
 
 module.exports = router;
