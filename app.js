@@ -6,6 +6,7 @@ var express = require('express'),
     app = express(),
     passport = require('passport'),
     localStrategy = require('passport-local'),
+    methodOverride = require('method-override'),
     Book = require('./models/book'),
     Comment = require('./models/comment'),
     User = require('./models/user'),
@@ -35,6 +36,7 @@ app.use(function(request, response, next){
     response.locals.currentUser = request.user;
     next();
 });
+app.use(methodOverride('_method'));
 app.use('/books', booksRoutes);
 app.use('/books/:id/comments', commentRoutes);
 app.use('/', indexRoutes);

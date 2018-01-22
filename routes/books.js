@@ -44,6 +44,18 @@ router.get('/:id', function(request, response){
     });
 });
 
+router.get('/:id/edit', function(request, response){
+    Book.findById(request.params.id, function(err, book){
+        if(!err) response.render('books/edit', {book:book});
+    });
+});
+
+router.put('/:id', function(request, response){
+    Book.findByIdAndUpdate(request.params.id, request.body.book, function(err, book){
+        if(!err) response.redirect('/books/'+request.params.id)
+    });
+});
+
 function isLoggedIn(request, response, next){
     if(request.isAuthenticated()){
         return next();
