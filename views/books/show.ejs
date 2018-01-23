@@ -21,6 +21,9 @@
                     <p><%=book.description%></p>
                     <p><em>Submitted by <strong><%=book.creator.username?book.creator.username:'Unknown'%></strong></em></p>
                     <a href="/books/<%=book._id%>/edit" class="btn btn-warning">Edit</a>
+                    <form id="delete_book" action="/books/<%=book._id%>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
             <div class="well">

@@ -1,3 +1,6 @@
 *{ font-family: 'Amatic SC' !important; }
-.thumbnail{ padding:0; }
-.thumbnail .caption-full{ padding:9px; }
+.thumbnail{ padding: 0; }
+.thumbnail .caption-full{ padding: 9px; }
+
+#delete_book{ display: inline; }
+.btn{ width:100px; }

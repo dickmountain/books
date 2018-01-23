@@ -52,7 +52,13 @@ router.get('/:id/edit', function(request, response){
 
 router.put('/:id', function(request, response){
     Book.findByIdAndUpdate(request.params.id, request.body.book, function(err, book){
-        if(!err) response.redirect('/books/'+request.params.id)
+        if(!err) response.redirect('/books/'+request.params.id);
+    });
+});
+
+router.delete('/:id', function(request, response){
+    Book.findByIdAndRemove(request.params.id, function(err, book){
+        if(!err) response.redirect('/books');
     });
 });
 
