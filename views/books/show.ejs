@@ -20,10 +20,13 @@
                     <h4><a><%=book.title%></a></h4>
                     <p><%=book.description%></p>
                     <p><em>Submitted by <strong><%=book.creator.username?book.creator.username:'Unknown'%></strong></em></p>
-                    <a href="/books/<%=book._id%>/edit" class="btn btn-warning">Edit</a>
-                    <form id="delete_book" action="/books/<%=book._id%>?_method=DELETE" method="POST">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    
+                    <% if(currentUser && book.creator.id.equals(currentUser._id)){ %>
+                        <a href="/books/<%=book._id%>/edit" class="btn btn-warning">Edit</a>
+                        <form id="delete_book" action="/books/<%=book._id%>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             </div>
             <div class="well">
@@ -37,6 +40,12 @@
                             <strong><%=comment.author.username%></strong>
                             <span class="pull-right">10 days ago</span>
                             <p><%=comment.text%></p>
+                            
+                            <a href="/books/<%=book._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-warning">Edit</a>
+                            <form id="delete_book" action="/books/<%=book._id%>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            
                         </div>
                     </div>
                 <% }) %>
