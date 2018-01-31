@@ -47,6 +47,16 @@ router.put('/:comment_id', function(request, response){
             response.redirect('/books/'+request.params.id);
         }
     });
+})
+
+router.delete('/:comment_id', function(request, response){
+    Comment.findByIdAndRemove(request.params.comment_id, function(err){
+        if(err){
+            response.redirect('back');
+        }else{
+            response.redirect('/books/'+request.params.id);
+        }    
+    });
 });
 
 function isLoggedIn(request, response, next){
