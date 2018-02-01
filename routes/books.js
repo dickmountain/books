@@ -64,10 +64,10 @@ router.delete('/:id', isBookCreator, function(request, response){
 
 function isBookCreator(request, response, next){
     if(request.isAuthenticated()){
-        Book.findById(request.params.id).populate('comments').exec(function(err, book){ 
+        Book.findById(request.params.id, function(err, book){ 
             if(!err){
                 if(book.creator.id.equals(request.user._id)){
-                   next() 
+                   next();
                 }
             }else{
                 response.redirect('back');
