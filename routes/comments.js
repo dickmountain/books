@@ -2,14 +2,15 @@ var express = require('express');
 var router = express.Router({ mergeParams:true });
 var Book = require('../models/book');
 var Comment = require('../models/comment');
+var middleware = require('../middleware');
 
-router.get('/new', isLoggedIn, function(request, response){
+router.get('/new', middleware.isLoggedIn, function(request, response){
     Book.findById(request.params.id, function(err, book){
         if(!err) response.render('comments/new', {book:book});
     });
 });
 
-router.post('/', isLoggedIn, function(request, response){
+router.post('/', middleware.isLoggedIn, function(request, response){
     Book.findById(request.params.id, function(err, book){
         if(err){
            response.redirect('/books'); 
@@ -29,7 +30,7 @@ router.post('/', isLoggedIn, function(request, response){
     });
 });
 
-router.get('/:comment_id/edit', isCommentCreator, function(request, response){
+router.get('/:comment_id/edit', middleware.isCommentCreator, function(request, response){
     Comment.findById(request.params.comment_id, function(err, comment){
         if(err){
             response.redirect('back');
@@ -39,7 +40,7 @@ router.get('/:comment_id/edit', isCommentCreator, function(request, response){
     });
 });
 
-router.put('/:comment_id', isCommentCreator, function(request, response){
+router.put('/:comment_id', middleware.isCommentCreator, function(request, response){
     Comment.findByIdAndUpdate(request.params.comment_id, request.body.comment, function(err, comment){
         if(err){
             response.redirect('back');
@@ -49,7 +50,7 @@ router.put('/:comment_id', isCommentCreator, function(request, response){
     });
 })
 
-router.delete('/:comment_id', isCommentCreator, function(request, response){
+router.delete('/:comment_id', middleware.isCommentCreator, function(request, response){
     Comment.findByIdAndRemove(request.params.comment_id, function(err){
         if(err){
             response.redirect('back');
@@ -58,28 +59,5 @@ router.delete('/:comment_id', isCommentCreator, function(request, response){
         }    
     });
 });
-
-function isCommentCreator(request, response, next){
-    if(request.isAuthenticated()){
-        Comment.findById(request.params.comment_id, function(err, comment){ 
-            if(!err){
-                if(comment.author.id.equals(request.user._id)){
-                   next();
-                }
-            }else{
-                response.redirect('back');
-            }
-        });
-    }else{
-        response.redirect('back');
-    }   
-}
-
-function isLoggedIn(request, response, next){
-    if(request.isAuthenticated()){
-        return next();
-    }
-    response.redirect('/login');
-}
 
 module.exports = router;
