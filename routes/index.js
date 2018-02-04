@@ -10,6 +10,7 @@ router.get('/', function(request, response){
 router.get('/register', function(request, response){
     response.render('register');
 });
+
 router.post('/register', function(request, response){
     var newUser = new User({ username:request.body.username });
     User.register(newUser, request.body.password, function(err, user){
@@ -34,6 +35,8 @@ router.post('/login',  passport.authenticate('local', {
 
 router.get('/logout', function(request, response){
     request.logout();
+    
+    request.flash('success', 'You are logged out.');
     response.redirect('/books');
 });
 

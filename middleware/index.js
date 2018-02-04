@@ -7,6 +7,9 @@ middleware.isLoggedIn = function(request, response, next){
     if(request.isAuthenticated()){
         return next();
     }
+    
+    response.flash('error', 'You need to be signed in');
+    
     response.redirect('/login');
 }
 

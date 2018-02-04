@@ -7,6 +7,7 @@ var express = require('express'),
     passport = require('passport'),
     localStrategy = require('passport-local'),
     methodOverride = require('method-override'),
+    flash = require('connect-flash'),
     Book = require('./models/book'),
     Comment = require('./models/comment'),
     User = require('./models/user'),
@@ -28,12 +29,15 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(bodyParser.urlencoded({
     extended:true
 }));
 app.use(express.static(__dirname + '/public'));
 app.use(function(request, response, next){
     response.locals.currentUser = request.user;
+    response.locals.error = request.flash('error');
+    response.locals.success = request.flash('success');
     next();
 });
 app.use(methodOverride('_method'));
