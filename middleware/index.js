@@ -19,12 +19,17 @@ middleware.isBookCreator = function(request, response, next){
             if(!err){
                 if(book.creator.id.equals(request.user._id)){
                    next();
+                }else{
+                    request.flash('error', 'Access error');
+                    response.redirect('back');
                 }
             }else{
+                request.flash('error', 'The book is not found.');
                 response.redirect('back');
             }
         });
     }else{
+        request.flash('error', 'You need to be signed in.');
         response.redirect('back');
     } 
 }
@@ -35,12 +40,17 @@ middleware.isCommentCreator = function(request, response, next){
             if(!err){
                 if(comment.author.id.equals(request.user._id)){
                    next();
+                }else{
+                    request.flash('error', 'Access error');
+                    response.redirect('back'); 
                 }
             }else{
+                request.flash('error', 'The comment is not found.');
                 response.redirect('back');
             }
         });
     }else{
+        request.flash('error', 'You need to be signed in.');
         response.redirect('back');
     }   
 }

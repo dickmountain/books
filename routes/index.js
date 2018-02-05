@@ -19,6 +19,8 @@ router.post('/register', function(request, response){
                 response.redirect('/books');
             });
         }else{
+            request.flash('error', err.message);
+            
             return response.render('register');
         }
     });

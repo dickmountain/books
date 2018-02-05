@@ -47,7 +47,11 @@ router.get('/:id', function(request, response){
 
 router.get('/:id/edit', middleware.isBookCreator, function(request, response){
     Book.findById(request.params.id, function(err, book){
-        if(!err) response.render('books/edit', {book:book});
+        if(err){
+            // flash possible
+        }else{
+            response.render('books/edit', { book:book });
+        }
     });
 });
 

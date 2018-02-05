@@ -16,13 +16,16 @@ router.post('/', middleware.isLoggedIn, function(request, response){
            response.redirect('/books'); 
         }else{
             Comment.create(request.body.comment, function(err, comment){
-                if(!err){
+                if(err){
+                    request.flash('error', 'There has been an error.');
+                }else{
                     comment.author.id = request.user._id;
                     comment.author.username = request.user.username;
                     comment.save();
                 
                     book.comments.push(comment);
                     book.save();
+                    
                     response.redirect('/books/'+book._id); 
                 }
             })
