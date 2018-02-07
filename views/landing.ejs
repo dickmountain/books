@@ -1,9 +1,28 @@
 <% include partials/header %>
 
-<h1>Landing</h1>
+<% if(error && error.length > 0){ %>
+    <div class="alert alert-danger" role="alert">
+        <%=error%>
+    </div>
+<% } %>
+<% if(success && success.length > 0){ %>
+    <div class="alert alert-success" role="alert">
+        <%=success%>
+    </div>
+<% } %>
+</div>
 
-<p>Welcome!</p>
+<div id="landing-header">
+ 	<h1>Booooooks!</h1>
+	<a href="/books" class="btn btn-lg btn-success">View All Books</a>
+</div>
 
-<a href="/books">Books</a>
+<ul class="slideshow">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
 
 <% include partials/footer %>

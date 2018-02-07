@@ -1,6 +1,63 @@
 *{ font-family: 'Amatic SC' !important; }
+
+body{ background-color: #fff; }
+
+#landing-header{ 
+    text-align: center; position:relative; z-index:1; padding-top:30vh;
+}
+#landing-header h1{ color:#000; }
+
+.slideshow{ 
+    position: fixed; width:100%; height:100%; top:0; left:0; z-index:0;
+    list-style: none; margin: 0; padding: 0;
+}
+.slideshow li{ 
+    width:100%; height:100%; position: absolute; top:0; left:0; z-index:0;
+    opacity: 0; background-size: cover; background-position: 50% 50%;
+    background-repeat: no-repeat; animation: imageAnimation 50s linear infinite;
+}
+.slideshow li:nth-child(1){
+    background-image: url(https://images.unsplash.com/photo-1508220574028-aded69d6441c?ixlib=rb-0.3.5&s=647d5a3985994d8b69a721d519130e0e&auto=format&fit=crop&w=1952&q=80)
+} 
+.slideshow li:nth-child(2){
+    background-image: url(https://images.unsplash.com/photo-1508220234019-edc6e3fbaa7f?ixlib=rb-0.3.5&s=bc53e32f1a51b548219017c0a74229ef&auto=format&fit=crop&w=1952&q=80);
+    animation-delay: 10s;
+}
+.slideshow li:nth-child(3){
+    background-image: url(https://images.unsplash.com/photo-1508011868393-d6513e812e5c?ixlib=rb-0.3.5&s=a2711b354a0b3f400b659449e42f16ca&auto=format&fit=crop&w=1952&q=80);
+    animation-delay: 20s;
+}
+.slideshow li:nth-child(4){
+    background-image: url(https://images.unsplash.com/photo-1507847823389-72cfe8f24142?ixlib=rb-0.3.5&s=03000da12289bbd81e69429f9b609e74&auto=format&fit=crop&w=1952&q=80);
+    animation-delay: 30s;
+}
+.slideshow li:nth-child(5){
+    background-image: url(https://images.unsplash.com/photo-1507431489734-ef0dbfbf88e1?ixlib=rb-0.3.5&s=7553f6bbc22224f4d4fd0338658c6430&auto=format&fit=crop&w=1952&q=80);
+    animation-delay: 40s;
+}
+
 .thumbnail{ padding: 0; }
 .thumbnail .caption-full{ padding: 9px; }
 
 #delete_form{ display: inline; }
-.btn{ width:100px; }
+
+@keyframes imageAnimation {
+    0% {
+        opacity:0;
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity:1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity:1;
+    }
+    30% {
+        opacity:0;
+    }
+}
+
+.no-cssanimations .slideshow li {
+    opacity: 1;
+}
