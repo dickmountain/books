@@ -14,6 +14,7 @@ router.get('/', function(request, response){
 router.post('/', middleware.isLoggedIn, function(request, response){
     var author = request.body.author;
     var image = request.body.image;
+    var price = request.body.price;
     var description = request.body.description;
     var title = request.body.title;
     var creator = {
@@ -23,6 +24,7 @@ router.post('/', middleware.isLoggedIn, function(request, response){
     Book.create({
         author: author,
         image: image,
+        price:price,
         description: description,
         title: title,
         creator: creator

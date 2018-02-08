@@ -16,7 +16,7 @@
             <div class="thumbnail">
                 <img class="img-responsive" src="<%=book.image%>" width="250">
                 <div class="caption-full">
-                    <h4 class="pull-right">$9.00</h4>
+                    <h4 class="pull-right">$<%=book.price%></h4>
                     <h4><a><%=book.title%></a></h4>
                     <p><%=book.description%></p>
                     <p><em>Submitted by <strong><%=book.creator.username?book.creator.username:'Unknown'%></strong></em></p>

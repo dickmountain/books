@@ -8,7 +8,7 @@ middleware.isLoggedIn = function(request, response, next){
         return next();
     }
     
-    response.flash('error', 'You need to be signed in');
+    request.flash('error', 'You need to be signed in');
     
     response.redirect('/login');
 }
